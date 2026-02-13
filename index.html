@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسيرة القرآن في رمضان</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- خلفية النجوم والقمر -->
+    <div class="stars-container" id="stars"></div>
+    <div class="moon"></div>
+    <div class="lantern-container">
+        <div class="lantern">🏮</div>
+        <div class="lantern">🕌</div>
+        <div class="lantern">🏮</div>
+    </div>
+
+    <!-- شاشة التحميل -->
+    <div class="loader-overlay" id="loader">
+        <div class="spinner"></div>
+        <p style="color: white; font-family: 'Cairo';">جاري التحقق...</p>
+    </div>
+
+    <!-- 1. صفحة تسجيل الدخول -->
+    <section id="login-page" class="page-section active">
+        <div class="auth-container">
+            <span class="auth-logo">🕌</span>
+            <h1 class="auth-title">مسيرة القرآن</h1>
+            <p class="auth-subtitle">سجل دخولك أو أنشئ حساباً جديداً</p>
+
+            <form id="login-form" onsubmit="handleAuth(event)">
+                <div class="input-group">
+                    <label>اسم المستخدم</label>
+                    <input type="text" id="username" class="input-field" placeholder="أدخل اسمك هنا..." required autocomplete="username">
+                </div>
+
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" class="input-field" placeholder="••••••" required autocomplete="current-password">
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+                    </div>
+                    <p id="error-msg" class="error-msg">⚠️ كلمة المرور غير صحيحة</p>
+                </div>
+
+                <button type="submit" class="btn-auth btn-primary">دخول / إنشاء حساب</button>
+            </form>
+
+            <div class="divider">أو</div>
+
+            <button class="btn-auth" style="background:white; color:#333;" onclick="handleGoogleLogin()">
+                <span>🔑</span> دخول كزائر
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. لوحة التحكم -->
+    <section id="app-page" class="page-section">
+        <button class="logout-btn" onclick="logout()">خروج</button>
+        
+        <div class="container">
+            <header class="app-header">
+                <h2 class="welcome-msg" id="welcome-text">مرحباً بك</h2>
+                <h1 class="main-title">برنامج الختمتين</h1>
+                <p style="color: #94a3b8; margin-top: 0.5rem;">🌙 8 صفحات بعد كل صلاة</p>
+            </header>
+
+            <div class="stats-row">
+                <div class="stat-box">
+                    <span class="stat-val" id="stat-k1">0%</span>
+                    <span class="stat-label">الختمة الأولى</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-val" id="stat-k2">0%</span>
+                    <span class="stat-label">الختمة الثانية</span>
+                </div>
+                <div class="stat-box" style="border-color: var(--gold);">
+                    <span class="stat-val" id="stat-total">0/150</span>
+                    <span class="stat-label">إجمالي الصلوات</span>
+                </div>
+            </div>
+
+            <div class="khatma-tabs">
+                <button class="k-tab active" onclick="switchTab(1)">📖 الختمة الأولى (1-15)</button>
+                <button class="k-tab" onclick="switchTab(2)">📗 الختمة الثانية (16-30)</button>
+            </div>
+
+            <div id="days-grid" class="days-container"></div>
+            
+            <div style="text-align: center; margin-top: 2rem; color: #555; font-size: 0.8rem;">
+                <p>تقبل الله طاعتكم 🤲</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ربط ملف الجافاسكربت -->
+    <script src="script.js"></script>
+</body>
+</html>
